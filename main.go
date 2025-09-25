@@ -9,13 +9,12 @@ import (
 	"strings"
 )
 
-type Contact struct {
-	ID int
-	Nom string
-	Email string
-}
+//	type Contact struct {
+//		ID int
+//		Nom string
+//		Email string
+//	}
 var contacts = make(map[int]Contact)
-
 
 func main() {
 	//flag
@@ -45,7 +44,7 @@ func main() {
 		if err != nil {
 			fmt.Println("Entrée invalide, veuillez entrer du choix correspondant.")
 
-	}
+		}
 		switch choice {
 		case 0:
 			afficherAide()
@@ -63,12 +62,12 @@ func main() {
 		default:
 			fmt.Println("Choix invalide, veuillez réessayer.")
 		}
-	// This is a placeholder for the main function.
-// fmt.Println("Hello, World!")
-}
+		// This is a placeholder for the main function.
+		// fmt.Println("Hello, World!")
 	}
+}
 
-func printMenu(){
+func printMenu() {
 	fmt.Println(" 🦋 === Menu Mini-CRM en CLI === 🦋")
 	fmt.Println("0. Aide")
 	fmt.Println("1. Ajouter un contact")
@@ -79,9 +78,7 @@ func printMenu(){
 	fmt.Println("Choisissez une option (0-5): ")
 }
 
-
-
-func ajouterContact(reader *bufio.Reader){
+func ajouterContact(reader *bufio.Reader) {
 	fmt.Print("Entrez le nom du contact: ")
 	nom, _ := reader.ReadString('\n')
 	nom = strings.TrimSpace(nom)
@@ -99,10 +96,9 @@ func ajouterContact(reader *bufio.Reader){
 	contact := Contact{ID: id, Nom: nom, Email: email}
 	contacts[id] = contact
 	fmt.Printf("Contact ajouté avec ID %d\n", id)
-} 
+}
 
-
-func listerContacts(){
+func listerContacts() {
 	if len(contacts) == 0 {
 		fmt.Println("Aucun contact disponible !!!")
 		return
@@ -116,7 +112,7 @@ func listerContacts(){
 
 }
 
-func supprimerContact(reader *bufio.Reader){
+func supprimerContact(reader *bufio.Reader) {
 	fmt.Println("ID à supprimer : ")
 	input, _ := reader.ReadString('\n')
 	id, err := strconv.Atoi(strings.TrimSpace(input))
@@ -132,7 +128,7 @@ func supprimerContact(reader *bufio.Reader){
 	fmt.Println("Contact supprimé.")
 }
 
-func modifierContact(reader *bufio.Reader){
+func modifierContact(reader *bufio.Reader) {
 	fmt.Println("ID à modifier : ")
 	input, _ := reader.ReadString('\n')
 	id, err := strconv.Atoi(strings.TrimSpace(input))
@@ -164,25 +160,22 @@ func modifierContact(reader *bufio.Reader){
 	fmt.Println("Contact modifié avec succès.")
 }
 
-func afficherAide(){
+func afficherAide() {
 	fmt.Println()
-    fmt.Println("=== Aide - Mini-CRM CLI ===")
-    fmt.Println("0  : Affiche cette aide.")
-    fmt.Println("1  : Ajouter un contact (interactive). On vous demandera le nom et l'email.")
-    fmt.Println("2  : Lister tous les contacts en mémoire.")
-    fmt.Println("3  : Supprimer un contact en fournissant son ID (ex: 3).")
-    fmt.Println("4  : Modifier un contact en fournissant son ID puis les champs (laisser vide pour conserver).")
-    fmt.Println("5  : Quitter l'application.")
-    fmt.Println()
-    fmt.Println("Flags :")
-    fmt.Println("  --ajouter --nom=\"Tanjiro\" --email=\"tanjiro@kimetsu.jp\"")
-    fmt.Println("    Permet d'ajouter directement un contact sans entrer dans le menu (ne pas ajouter les guillemets).")
-    fmt.Println()
-    fmt.Println("Notes :")
-    fmt.Println(" - Les contacts sont stockés en mémoire seulement (perdus à la fermeture).")
-    fmt.Println(" - Les IDs sont générés automatiquement avec len(contacts)+1; après suppression un ID peut être manquant.")
-    fmt.Println()
+	fmt.Println("=== Aide - Mini-CRM CLI ===")
+	fmt.Println("0  : Affiche cette aide.")
+	fmt.Println("1  : Ajouter un contact (interactive). On vous demandera le nom et l'email.")
+	fmt.Println("2  : Lister tous les contacts en mémoire.")
+	fmt.Println("3  : Supprimer un contact en fournissant son ID (ex: 3).")
+	fmt.Println("4  : Modifier un contact en fournissant son ID puis les champs (laisser vide pour conserver).")
+	fmt.Println("5  : Quitter l'application.")
+	fmt.Println()
+	fmt.Println("Flags :")
+	fmt.Println("  --ajouter --nom=\"Tanjiro\" --email=\"tanjiro@kimetsu.jp\"")
+	fmt.Println("    Permet d'ajouter directement un contact sans entrer dans le menu (ne pas ajouter les guillemets).")
+	fmt.Println()
+	fmt.Println("Notes :")
+	fmt.Println(" - Les contacts sont stockés en mémoire seulement (perdus à la fermeture).")
+	fmt.Println(" - Les IDs sont générés automatiquement avec len(contacts)+1; après suppression un ID peut être manquant.")
+	fmt.Println()
 }
-
-
-
