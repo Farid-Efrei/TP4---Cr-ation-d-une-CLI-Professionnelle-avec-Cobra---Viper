@@ -2,7 +2,7 @@ package storage
 
 import (
 	"TP4/internal/models"
-	"errors"
+	"os"
 )
 
 // MemoryStore est une implémentation en mémoire de Storer
@@ -35,7 +35,7 @@ func (ms *MemoryStore) GetAll() ([]*models.Contact, error) {
 func (ms *MemoryStore) GetByID(id int) (*models.Contact, error) {
 	contact, ok := ms.contacts[id]
 	if !ok {
-		return nil, errors.New("contact not found")
+		return nil, os.ErrNotExist
 	}
 	return contact, nil
 }

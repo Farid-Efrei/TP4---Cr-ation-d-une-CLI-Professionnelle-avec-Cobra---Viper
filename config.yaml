@@ -1,0 +1,4 @@
+storage:
+  type: "json" # "gorm" | "json" | "memory"
+  json_path: "data/contacts.json"
+  gorm_path: "data/crm-far.db"
